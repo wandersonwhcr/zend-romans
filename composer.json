@@ -4,6 +4,11 @@
     "type": "library",
     "license": "MIT",
     "keywords": ["zend-framework", "zf", "roman-numerals"],
+    "autoload": {
+        "psr-4": {
+            "Zend\\Romans\\": "src"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
             "ZendTest\\Romans\\": "test"
