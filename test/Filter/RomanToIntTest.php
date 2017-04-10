@@ -26,4 +26,14 @@ class RomanToIntTest extends TestCase
     {
         $this->assertInstanceOf(FilterInterface::class, $this->filter);
     }
+
+    /**
+     * Test Filter
+     */
+    public function testFilter()
+    {
+        $this->assertSame(1, $this->filter->filter('I'));
+        $this->assertSame(5, $this->filter->filter('V'));
+        $this->assertSame(10, $this->filter->filter('X'));
+    }
 }
