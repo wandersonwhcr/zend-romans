@@ -1,0 +1,7 @@
+{
+    "name": "wandersonwhcr/zend-romans",
+    "description": "Zend Framework Romans Integration",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["zend-framework", "zf", "roman-numerals"]
+}
