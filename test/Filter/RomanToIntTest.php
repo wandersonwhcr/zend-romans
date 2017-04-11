@@ -36,4 +36,15 @@ class RomanToIntTest extends TestCase
         $this->assertSame(5, $this->filter->filter('V'));
         $this->assertSame(10, $this->filter->filter('X'));
     }
+
+    /**
+     * Test Filter with Invalid Input
+     */
+    public function testFilterWithInvalidInput()
+    {
+        $this->assertNull($this->filter->filter('.'));
+        $this->assertNull($this->filter->filter('IIX'));
+        $this->assertNull($this->filter->filter(1));
+        $this->assertNull($this->filter->filter(false));
+    }
 }
