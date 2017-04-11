@@ -2,6 +2,7 @@
 
 namespace Zend\Romans\Filter;
 
+use Romans\Filter\IntToRoman as BaseIntToRoman;
 use Zend\Filter\FilterInterface;
 
 /**
@@ -14,6 +15,6 @@ class IntToRoman implements FilterInterface
      */
     public function filter($value)
     {
-        return null;
+        return (new BaseIntToRoman())->filter($value);
     }
 }
