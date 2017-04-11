@@ -36,4 +36,12 @@ class IntToRomanTest extends TestCase
         $this->assertSame('V', $this->filter->filter(5));
         $this->assertSame('X', $this->filter->filter(10));
     }
+
+    /**
+     * Test Filter with Invalid Input
+     */
+    public function testFilterWithInvalidInput()
+    {
+        $this->assertNull($this->filter->filter(-1));
+    }
 }

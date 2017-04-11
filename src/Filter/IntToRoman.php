@@ -2,6 +2,7 @@
 
 namespace Zend\Romans\Filter;
 
+use Romans\Filter\Exception as FilterException;
 use Romans\Filter\IntToRoman as BaseIntToRoman;
 use Zend\Filter\FilterInterface;
 
@@ -15,6 +16,14 @@ class IntToRoman implements FilterInterface
      */
     public function filter($value)
     {
-        return (new BaseIntToRoman())->filter($value);
+        $result = null;
+
+        try {
+            $result = (new BaseIntToRoman())->filter($value);
+        } catch (FilterException $e) {
+            // default value: null
+        }
+
+        return $result;
     }
 }
