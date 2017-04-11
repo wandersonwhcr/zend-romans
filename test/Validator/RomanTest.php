@@ -36,4 +36,13 @@ class RomanTest extends TestCase
         $this->assertTrue($this->validator->isValid('V'));
         $this->assertTrue($this->validator->isValid('X'));
     }
+
+    /**
+     * Test Is Valid With Invalid Values
+     */
+    public function testIsValidWithInvalidValues()
+    {
+        $this->assertFalse($this->validator->isValid('.'));
+        $this->assertSame(['unknownToken' => 'Unknown token "." at position 0'], $this->validator->getMessages());
+    }
 }
