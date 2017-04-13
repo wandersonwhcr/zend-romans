@@ -5,6 +5,7 @@ namespace ZendTest\Romans;
 use PHPUnit\Framework\TestCase;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\ValidatorProviderInterface;
+use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 use Zend\Mvc\Application;
 use Zend\Romans\Filter;
 use Zend\Romans\Module;
@@ -50,6 +51,7 @@ class ModuleTest extends TestCase
     {
         $this->assertInstanceOf(FilterProviderInterface::class, $this->module);
         $this->assertInstanceOf(ValidatorProviderInterface::class, $this->module);
+        $this->assertInstanceOf(ViewHelperProviderInterface::class, $this->module);
     }
 
     /**
