@@ -4,6 +4,7 @@ namespace ZendTest\Romans;
 
 use PHPUnit\Framework\TestCase;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
+use Zend\ModuleManager\Feature\ValidatorProviderInterface;
 use Zend\Mvc\Application;
 use Zend\Romans\Filter;
 use Zend\Romans\Module;
@@ -48,6 +49,7 @@ class ModuleTest extends TestCase
     public function testInstanceOf()
     {
         $this->assertInstanceOf(FilterProviderInterface::class, $this->module);
+        $this->assertInstanceOf(ValidatorProviderInterface::class, $this->module);
     }
 
     /**
@@ -87,6 +89,25 @@ class ModuleTest extends TestCase
         foreach ($identifiers as $identifier) {
             $this->assertTrue($manager->has($identifier));
             $this->assertInstanceOf(Filter\IntToRoman::class, $manager->get($identifier));
+        }
+    }
+
+    /**
+     * Test Roman Validator
+     */
+    public function testRomanValidator()
+    {
+        $manager = $this->buildApplication()->getServiceManager()->get('ValidatorManager');
+
+        $identifiers = [
+            Validator\Roman::class,
+            'Roman',
+            'roman',
+        ];
+
+        foreach ($identifiers as $identifier) {
+            $this->assertTrue($manager->has($identifier));
+            $this->assertInstanceOf(Validator\Roman::class, $manager->get($identifier));
         }
     }
 }
