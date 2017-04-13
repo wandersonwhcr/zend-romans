@@ -7,9 +7,9 @@ use Zend\Romans\Filter\IntToRoman as IntToRomanFilter;
 use Zend\Romans\Filter\RomanToInt as RomanToIntFilter;
 
 /**
- * Integer to Roman Number Hydrator Strategy
+ * Roman Number Hydrator Strategy
  */
-class IntToRoman implements StrategyInterface
+class Roman implements StrategyInterface
 {
     /**
      * IntToRoman Filter
@@ -80,16 +80,16 @@ class IntToRoman implements StrategyInterface
     /**
      * {@inheritdoc}
      */
-    public function extract($value)
+    public function hydrate($value)
     {
-        return $this->getRomanToIntFilter()->filter($value);
+        return $this->getIntToRomanFilter()->filter($value);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function hydrate($value)
+    public function extract($value)
     {
-        return $this->getIntToRomanFilter()->filter($value);
+        return $this->getRomanToIntFilter()->filter($value);
     }
 }

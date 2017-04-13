@@ -4,19 +4,19 @@ namespace ZendTest\Romans\Hydrator\Strategy;
 
 use PHPUnit\Framework\TestCase;
 use Zend\Hydrator\Strategy\StrategyInterface;
-use Zend\Romans\Hydrator\Strategy\IntToRoman as IntToRomanStrategy;
+use Zend\Romans\Hydrator\Strategy\Roman as RomanStrategy;
 
 /**
- * Int to Roman Test
+ * Roman Test
  */
-class IntToRomanTest extends TestCase
+class RomanTest extends TestCase
 {
     /**
      * {@inheritdoc}
      */
     protected function setUp()
     {
-        $this->strategy = new IntToRomanStrategy();
+        $this->strategy = new RomanStrategy();
     }
 
     /**
