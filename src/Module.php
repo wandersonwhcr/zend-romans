@@ -2,18 +2,23 @@
 
 namespace Zend\Romans;
 
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\FilterProviderInterface;
+use Zend\Romans\Filter;
 
 /**
  * Romans Module
  */
-class Module implements ConfigProviderInterface
+class Module implements FilterProviderInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function getConfig()
+    public function getFilterConfig()
     {
-        return [];
+        return [
+            'invokables' => [
+                Filter\RomanToInt::class => Filter\RomanToInt::class,
+            ],
+        ];
     }
 }
