@@ -57,7 +57,16 @@ class ModuleTest extends TestCase
     {
         $manager = $this->buildApplication()->getServiceManager()->get('FilterManager');
 
-        $this->assertTrue($manager->has(Filter\RomanToInt::class));
-        $this->assertInstanceOf(Filter\RomanToInt::class, $manager->get(Filter\RomanToInt::class));
+        $identifiers = [
+            Filter\RomanToInt::class,
+            'RomanToInt',
+            'romanToInt',
+            'romantoint',
+        ];
+
+        foreach ($identifiers as $identifier) {
+            $this->assertTrue($manager->has($identifier));
+            $this->assertInstanceOf(Filter\RomanToInt::class, $manager->get($identifier));
+        }
     }
 }

@@ -19,6 +19,11 @@ class Module implements FilterProviderInterface
             'invokables' => [
                 Filter\RomanToInt::class => Filter\RomanToInt::class,
             ],
+            'aliases' => [
+                'RomanToInt' => Filter\RomanToInt::class,
+                'romanToInt' => Filter\RomanToInt::class,
+                'romantoint' => Filter\RomanToInt::class,
+            ],
         ];
     }
 }
