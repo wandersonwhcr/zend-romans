@@ -20,7 +20,7 @@ class Roman extends AbstractValidator
      * {@inheritdoc}
      */
     protected $messageTemplates = [
-        self::UNKNOWN_TOKEN      => 'Unknown token "%value%" at position %position%',
+        self::UNKNOWN_TOKEN      => 'Unknown token "%token%" at position %position%',
         self::INVALID_TOKEN_TYPE => '',
         self::INVALID_ROMAN      => '',
     ];
@@ -29,14 +29,43 @@ class Roman extends AbstractValidator
      * {@inheritdoc}
      */
     protected $messageVariables = [
+        'token'    => 'token',
         'position' => 'position',
     ];
+
+    /**
+     * Token for Message Variables
+     * @type string
+     */
+    protected $token = '';
 
     /**
      * Position for Message Variables
      * @type int
      */
     protected $position = 0;
+
+    /**
+     * Set Token for Message Variables
+     *
+     * @param  string $token Token Value
+     * @return self   Fluent Interface
+     */
+    protected function setToken(string $token) : self
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * Get Token for Message Variable
+     *
+     * @return string Token Value
+     */
+    protected function getToken() : string
+    {
+        return $this->token;
+    }
 
     /**
      * Set Position for Message Variables
@@ -73,7 +102,9 @@ class Roman extends AbstractValidator
             $result = ((new RomanToInt())->filter($value) >= 0);
         } catch (LexerException $e) {
             // unknown token
-            $this->setPosition(0);
+            $this
+                ->setToken($e->getToken())
+                ->setPosition($e->getPosition());
             $this->error(self::UNKNOWN_TOKEN);
         } catch (ParserException $e) {
             // invalid token type
