@@ -4,9 +4,11 @@ namespace ZendTest\Romans;
 
 use PHPUnit\Framework\TestCase;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\ModuleManager\Feature\ValidatorProviderInterface;
 use Zend\Mvc\Application;
 use Zend\Romans\Filter;
+use Zend\Romans\Hydrator\Strategy as HydratorStrategy;
 use Zend\Romans\Module;
 use Zend\Romans\Validator;
 
@@ -38,6 +40,7 @@ class ModuleTest extends TestCase
                 'Zend\Router',
                 'Zend\Filter',
                 'Zend\Validator',
+                'Zend\Hydrator',
                 'Zend\Romans',
             ],
         ]);
@@ -49,6 +52,7 @@ class ModuleTest extends TestCase
     public function testInstanceOf()
     {
         $this->assertInstanceOf(FilterProviderInterface::class, $this->module);
+        $this->assertInstanceOf(ServiceProviderInterface::class, $this->module);
         $this->assertInstanceOf(ValidatorProviderInterface::class, $this->module);
     }
 
@@ -108,6 +112,23 @@ class ModuleTest extends TestCase
         foreach ($identifiers as $identifier) {
             $this->assertTrue($manager->has($identifier));
             $this->assertInstanceOf(Validator\Roman::class, $manager->get($identifier));
+        }
+    }
+
+    /**
+     * Test Roman Hydrator Strategy
+     */
+    public function testRomanHydratorStrategy()
+    {
+        $manager = $this->buildApplication()->getServiceManager();
+
+        $identifiers = [
+            HydratorStrategy\Roman::class,
+        ];
+
+        foreach ($identifiers as $identifier) {
+            $this->assertTrue($manager->has($identifier));
+            $this->assertInstanceOf(HydratorStrategy\Roman::class, $manager->get($identifier));
         }
     }
 }
