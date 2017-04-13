@@ -49,6 +49,16 @@ class RomanTest extends TestCase
     }
 
     /**
+     * Test Hydrate with Invalid Integer
+     */
+    public function testHydrateWithInvalidInteger()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->strategy->hydrate(-1);
+    }
+
+    /**
      * Test Extract
      */
     public function testExtract()
@@ -66,5 +76,15 @@ class RomanTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $this->strategy->extract(false);
+    }
+
+    /**
+     * Test Extract with Invalid Roman
+     */
+    public function testExtractWithInvalidRoman()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->strategy->extract('XIXX');
     }
 }
