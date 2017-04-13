@@ -32,5 +32,9 @@ class RomanTest extends TestCase
     public function testRoman()
     {
         $this->assertSame('N', ($this->helper)(0));
+        $this->assertSame('I', ($this->helper)(1));
+
+        $this->assertSame('CDLXIX', ($this->helper)(469));
+        $this->assertSame('MCMXCIX', ($this->helper)(1999));
     }
 }

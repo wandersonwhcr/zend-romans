@@ -2,6 +2,7 @@
 
 namespace Zend\Romans\View\Helper;
 
+use Zend\Romans\Filter\IntToRoman as IntToRomanFilter;
 use Zend\View\Helper\AbstractHelper;
 
 /**
@@ -10,10 +11,46 @@ use Zend\View\Helper\AbstractHelper;
 class Roman extends AbstractHelper
 {
     /**
+     * IntToRoman Filter
+     * @type IntToRomanFilter
+     */
+    private $intToRomanFilter;
+
+    /**
+     * Default Constructor
+     */
+    public function __construct()
+    {
+        $this->setIntToRomanFilter(new IntToRomanFilter());
+    }
+
+    /**
+     * Set IntToRoman Filter
+     *
+     * @param  IntToRomanFilter $intToRomanFilter IntToRoman Object
+     * @return self             Fluent Interface
+     */
+    protected function setIntToRomanFilter(IntToRomanFilter $intToRomanFilter) : self
+    {
+        $this->intToRomanFilter = $intToRomanFilter;
+        return $this;
+    }
+
+    /**
+     * Get IntToRoman Filter
+     *
+     * @return IntToRomanFilter IntToRoman Object
+     */
+    protected function getIntToRomanFilter() : IntToRomanFilter
+    {
+        return $this->intToRomanFilter;
+    }
+
+    /**
      * Invoke Support
      */
     public function __invoke(string $value)
     {
-        return 'N';
+        return $this->getIntToRomanFilter()->filter($value);
     }
 }
