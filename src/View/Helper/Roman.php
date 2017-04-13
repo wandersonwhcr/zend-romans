@@ -18,10 +18,12 @@ class Roman extends AbstractHelper
 
     /**
      * Default Constructor
+     *
+     * @param  IntToRomanFilter IntToRoman Filter
      */
-    public function __construct()
+    public function __construct(IntToRomanFilter $intToRomanFilter)
     {
-        $this->setIntToRomanFilter(new IntToRomanFilter());
+        $this->setIntToRomanFilter($intToRomanFilter);
     }
 
     /**

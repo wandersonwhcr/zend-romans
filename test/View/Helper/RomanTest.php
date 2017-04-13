@@ -3,6 +3,7 @@
 namespace Zend\Romans\View\Helper;
 
 use PHPUnit\Framework\TestCase;
+use Zend\Romans\Filter\IntToRoman as IntToRomanFilter;
 use Zend\View\Helper\HelperInterface;
 
 /**
@@ -15,7 +16,7 @@ class RomanTest extends TestCase
      */
     protected function setUp()
     {
-        $this->helper = new Roman();
+        $this->helper = new Roman(new IntToRomanFilter());
     }
 
     /**

@@ -57,8 +57,8 @@ class Module implements FilterProviderInterface, ValidatorProviderInterface, Vie
     public function getViewHelperConfig()
     {
         return [
-            'invokables' => [
-                ViewHelper\Roman::class => ViewHelper\Roman::class,
+            'factories' => [
+                ViewHelper\Roman::class => ViewHelper\Factory\Roman::class,
             ],
             'aliases' => [
                 'Roman' => ViewHelper\Roman::class,
