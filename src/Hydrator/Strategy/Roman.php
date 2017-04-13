@@ -2,6 +2,7 @@
 
 namespace Zend\Romans\Hydrator\Strategy;
 
+use InvalidArgumentException;
 use Zend\Hydrator\Strategy\StrategyInterface;
 use Zend\Romans\Filter\IntToRoman as IntToRomanFilter;
 use Zend\Romans\Filter\RomanToInt as RomanToIntFilter;
@@ -82,6 +83,10 @@ class Roman implements StrategyInterface
      */
     public function hydrate($value)
     {
+        if (! is_int($value)) {
+            throw new InvalidArgumentException('Invalid value type; must be "int"');
+        }
+
         return $this->getIntToRomanFilter()->filter($value);
     }
 
@@ -90,6 +95,10 @@ class Roman implements StrategyInterface
      */
     public function extract($value)
     {
+        if (! is_string($value)) {
+            throw new InvalidArgumentException('Invalid value type; must be "string"');
+        }
+
         return $this->getRomanToIntFilter()->filter($value);
     }
 }

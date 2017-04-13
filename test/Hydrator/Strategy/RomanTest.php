@@ -2,6 +2,7 @@
 
 namespace ZendTest\Romans\Hydrator\Strategy;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Zend\Hydrator\Strategy\StrategyInterface;
 use Zend\Romans\Hydrator\Strategy\Roman as RomanStrategy;
@@ -28,6 +29,26 @@ class RomanTest extends TestCase
     }
 
     /**
+     * Test Hydrate
+     */
+    public function testHydrate()
+    {
+        $this->assertSame('I', $this->strategy->hydrate(1));
+        $this->assertSame('V', $this->strategy->hydrate(5));
+        $this->assertSame('X', $this->strategy->hydrate(10));
+    }
+
+    /**
+     * Test Hydrate with Invalid Value
+     */
+    public function testHydrateWithInvalidValue()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->strategy->hydrate('FOOBAR');
+    }
+
+    /**
      * Test Extract
      */
     public function testExtract()
@@ -38,12 +59,12 @@ class RomanTest extends TestCase
     }
 
     /**
-     * Test Hydrate
+     * Test Extract with Invalid Value
      */
-    public function testHydrate()
+    public function testExtractWithInvalidValue()
     {
-        $this->assertSame('I', $this->strategy->hydrate(1));
-        $this->assertSame('V', $this->strategy->hydrate(5));
-        $this->assertSame('X', $this->strategy->hydrate(10));
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->strategy->extract(false);
     }
 }
