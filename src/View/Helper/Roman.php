@@ -9,4 +9,11 @@ use Zend\View\Helper\AbstractHelper;
  */
 class Roman extends AbstractHelper
 {
+    /**
+     * Invoke Support
+     */
+    public function __invoke(string $value)
+    {
+        return 'N';
+    }
 }

@@ -10,6 +10,9 @@ use Zend\View\Helper\HelperInterface;
  */
 class RomanTest extends TestCase
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function setUp()
     {
         $this->helper = new Roman();
@@ -21,5 +24,13 @@ class RomanTest extends TestCase
     public function testInstanceOf()
     {
         $this->assertInstanceOf(HelperInterface::class, $this->helper);
+    }
+
+    /**
+     * Test Roman
+     */
+    public function testRoman()
+    {
+        $this->assertSame('N', ($this->helper)(0));
     }
 }
