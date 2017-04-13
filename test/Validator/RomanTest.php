@@ -53,5 +53,8 @@ class RomanTest extends TestCase
 
         $this->assertFalse($this->validator->isValid('XIIIX'));
         $this->assertSame(['invalidRoman' => 'Invalid Roman number "XIIIX"'], $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid([]));
+        $this->assertSame(['invalidType' => 'Invalid type; must be "string"'], $this->validator->getMessages());
     }
 }

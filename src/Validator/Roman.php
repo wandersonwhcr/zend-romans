@@ -12,6 +12,7 @@ use Zend\Validator\AbstractValidator;
  */
 class Roman extends AbstractValidator
 {
+    const INVALID_TYPE  = 'invalidType';
     const UNKNOWN_TOKEN = 'unknownToken';
     const INVALID_ROMAN = 'invalidRoman';
 
@@ -19,6 +20,7 @@ class Roman extends AbstractValidator
      * {@inheritdoc}
      */
     protected $messageTemplates = [
+        self::INVALID_TYPE  => 'Invalid type; must be "string"',
         self::UNKNOWN_TOKEN => 'Unknown token "%token%" at position %position%',
         self::INVALID_ROMAN => 'Invalid Roman number "%value%"',
     ];
@@ -116,6 +118,11 @@ class Roman extends AbstractValidator
     public function isValid($value)
     {
         $this->setValue($value);
+
+        if (! is_string($value)) {
+            $this->error(self::INVALID_TYPE, 'Blabla');
+            return false;
+        }
 
         $result = false;
 
