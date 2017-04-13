@@ -7,6 +7,7 @@ use Zend\ModuleManager\Feature\ValidatorProviderInterface;
 use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 use Zend\Romans\Filter;
 use Zend\Romans\Validator;
+use Zend\Romans\View\Helper as ViewHelper;
 
 /**
  * Romans Module
@@ -55,6 +56,14 @@ class Module implements FilterProviderInterface, ValidatorProviderInterface, Vie
      */
     public function getViewHelperConfig()
     {
-        return [];
+        return [
+            'invokables' => [
+                ViewHelper\Roman::class => ViewHelper\Roman::class,
+            ],
+            'aliases' => [
+                'Roman' => ViewHelper\Roman::class,
+                'roman' => ViewHelper\Roman::class,
+            ],
+        ];
     }
 }

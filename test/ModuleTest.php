@@ -10,6 +10,7 @@ use Zend\Mvc\Application;
 use Zend\Romans\Filter;
 use Zend\Romans\Module;
 use Zend\Romans\Validator;
+use Zend\Romans\View\Helper as ViewHelper;
 
 /**
  * Module Test
@@ -110,6 +111,25 @@ class ModuleTest extends TestCase
         foreach ($identifiers as $identifier) {
             $this->assertTrue($manager->has($identifier));
             $this->assertInstanceOf(Validator\Roman::class, $manager->get($identifier));
+        }
+    }
+
+    /**
+     * Test Roman ViewHelper
+     */
+    public function testRomanViewHelper()
+    {
+        $manager = $this->buildApplication()->getServiceManager()->get('ViewHelperManager');
+
+        $identifiers = [
+            ViewHelper\Roman::class,
+            'Roman',
+            'roman',
+        ];
+
+        foreach ($identifiers as $identifier) {
+            $this->assertTrue($manager->has($identifier));
+            $this->assertInstanceOf(ViewHelper\Roman::class, $manager->get($identifier));
         }
     }
 }
