@@ -12,17 +12,15 @@ use Zend\Validator\AbstractValidator;
  */
 class Roman extends AbstractValidator
 {
-    const UNKNOWN_TOKEN      = 'unknownToken';
-    const INVALID_TOKEN_TYPE = 'invalidTokenType';
-    const INVALID_ROMAN      = 'invalidRoman';
+    const UNKNOWN_TOKEN = 'unknownToken';
+    const INVALID_ROMAN = 'invalidRoman';
 
     /**
      * {@inheritdoc}
      */
     protected $messageTemplates = [
-        self::UNKNOWN_TOKEN      => 'Unknown token "%token%" at position %position%',
-        self::INVALID_TOKEN_TYPE => '',
-        self::INVALID_ROMAN      => '',
+        self::UNKNOWN_TOKEN => 'Unknown token "%token%" at position %position%',
+        self::INVALID_ROMAN => 'Invalid Roman number "%value%"',
     ];
 
     /**
@@ -90,6 +88,29 @@ class Roman extends AbstractValidator
     }
 
     /**
+     * Mark Validator with Error
+     *
+     * @param  string      $error    Error Constant
+     * @param  string|null $token    Token
+     * @param  int|null    $position Position
+     * @return self        Fluent Interface
+     */
+    protected function markWithError(string $error, $token, $position) : self
+    {
+        if (isset($token)) {
+            $this->setToken($token);
+        }
+
+        if (isset($position)) {
+            $this->setPosition($position);
+        }
+
+        $this->error($error);
+
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function isValid($value)
@@ -101,16 +122,9 @@ class Roman extends AbstractValidator
         try {
             $result = ((new RomanToInt())->filter($value) >= 0);
         } catch (LexerException $e) {
-            // unknown token
-            $this
-                ->setToken($e->getToken())
-                ->setPosition($e->getPosition());
-            $this->error(self::UNKNOWN_TOKEN);
+            $this->markWithError(self::UNKNOWN_TOKEN, $e->getToken(), $e->getPosition());
         } catch (ParserException $e) {
-            // invalid token type
-            // unknown token
-            // invalid roman number
-            $this->error(ParserException::class);
+            $this->markWithError(self::INVALID_ROMAN, $e->getToken(), $e->getPosition());
         }
 
         return $result;

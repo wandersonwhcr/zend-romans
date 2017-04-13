@@ -47,5 +47,11 @@ class RomanTest extends TestCase
 
         $this->assertFalse($this->validator->isValid('IAI'));
         $this->assertSame(['unknownToken' => 'Unknown token "A" at position 1'], $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(''));
+        $this->assertSame(['invalidRoman' => 'Invalid Roman number ""'], $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid('XIIIX'));
+        $this->assertSame(['invalidRoman' => 'Invalid Roman number "XIIIX"'], $this->validator->getMessages());
     }
 }
