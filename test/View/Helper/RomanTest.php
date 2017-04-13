@@ -37,4 +37,12 @@ class RomanTest extends TestCase
         $this->assertSame('CDLXIX', ($this->helper)(469));
         $this->assertSame('MCMXCIX', ($this->helper)(1999));
     }
+
+    /**
+     * Test Roman with Invalid Value
+     */
+    public function testRomanWithInvalidValue()
+    {
+        $this->assertNull(($this->helper)('-1'));
+    }
 }
