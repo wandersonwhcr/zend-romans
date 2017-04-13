@@ -18,11 +18,15 @@ class Module implements FilterProviderInterface
         return [
             'invokables' => [
                 Filter\RomanToInt::class => Filter\RomanToInt::class,
+                Filter\IntToRoman::class => Filter\IntToRoman::class,
             ],
             'aliases' => [
                 'RomanToInt' => Filter\RomanToInt::class,
                 'romanToInt' => Filter\RomanToInt::class,
                 'romantoint' => Filter\RomanToInt::class,
+                'IntToRoman' => Filter\IntToRoman::class,
+                'intToRoman' => Filter\IntToRoman::class,
+                'inttoroman' => Filter\IntToRoman::class,
             ],
         ];
     }

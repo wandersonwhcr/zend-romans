@@ -51,9 +51,9 @@ class ModuleTest extends TestCase
     }
 
     /**
-     * Test Application
+     * Test RomanToInt Filter
      */
-    public function testApplication()
+    public function testRomanToIntFilter()
     {
         $manager = $this->buildApplication()->getServiceManager()->get('FilterManager');
 
@@ -67,6 +67,26 @@ class ModuleTest extends TestCase
         foreach ($identifiers as $identifier) {
             $this->assertTrue($manager->has($identifier));
             $this->assertInstanceOf(Filter\RomanToInt::class, $manager->get($identifier));
+        }
+    }
+
+    /**
+     * Test IntToRoman Filter
+     */
+    public function testIntToRomanFilter()
+    {
+        $manager = $this->buildApplication()->getServiceManager()->get('FilterManager');
+
+        $identifiers = [
+            Filter\IntToRoman::class,
+            'IntToRoman',
+            'intToRoman',
+            'inttoroman',
+        ];
+
+        foreach ($identifiers as $identifier) {
+            $this->assertTrue($manager->has($identifier));
+            $this->assertInstanceOf(Filter\IntToRoman::class, $manager->get($identifier));
         }
     }
 }
