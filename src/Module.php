@@ -52,14 +52,14 @@ class Module implements
     {
         return [
             'invokables' => [
-                RomansFilter\IntToRoman::class => RomansFilter\IntToRoman::class,
                 RomansFilter\RomanToInt::class => RomansFilter\RomanToInt::class,
                 RomansGrammar\Grammar::class   => RomansGrammar\Grammar::class,
             ],
             'factories' => [
-                HydratorStrategy\Roman::class => HydratorStrategy\Factory\Roman::class,
-                RomansLexer\Lexer::class      => RomansFactory\Lexer::class,
-                RomansParser\Parser::class    => RomansFactory\Parser::class,
+                HydratorStrategy\Roman::class  => HydratorStrategy\Factory\Roman::class,
+                RomansFilter\IntToRoman::class => RomansFactory\IntToRoman::class,
+                RomansLexer\Lexer::class       => RomansFactory\Lexer::class,
+                RomansParser\Parser::class     => RomansFactory\Parser::class,
             ],
         ];
     }
