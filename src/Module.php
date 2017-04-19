@@ -3,16 +3,22 @@
 namespace Zend\Romans;
 
 use Zend\ModuleManager\Feature\FilterProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\ModuleManager\Feature\ValidatorProviderInterface;
 use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 use Zend\Romans\Filter;
+use Zend\Romans\Hydrator\Strategy as HydratorStrategy;
 use Zend\Romans\Validator;
 use Zend\Romans\View\Helper as ViewHelper;
 
 /**
  * Romans Module
  */
-class Module implements FilterProviderInterface, ValidatorProviderInterface, ViewHelperProviderInterface
+class Module implements
+    FilterProviderInterface,
+    ServiceProviderInterface,
+    ValidatorProviderInterface,
+    ViewHelperProviderInterface
 {
     /**
      * {@inheritdoc}
@@ -31,6 +37,18 @@ class Module implements FilterProviderInterface, ValidatorProviderInterface, Vie
                 'IntToRoman' => Filter\IntToRoman::class,
                 'intToRoman' => Filter\IntToRoman::class,
                 'inttoroman' => Filter\IntToRoman::class,
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getServiceConfig()
+    {
+        return [
+            'factories' => [
+                HydratorStrategy\Roman::class => HydratorStrategy\Factory\Roman::class,
             ],
         ];
     }
