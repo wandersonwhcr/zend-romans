@@ -4,6 +4,10 @@ namespace ZendTest\Romans;
 
 use Interop\Container\ContainerInterface;
 use PHPUnit\Framework\TestCase;
+use Romans\Filter as RomansFilter;
+use Romans\Grammar as RomansGrammar;
+use Romans\Lexer as RomansLexer;
+use Romans\Parser as RomansParser;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\ModuleManager\Feature\ValidatorProviderInterface;
@@ -128,5 +132,19 @@ class ModuleTest extends TestCase
         $manager = $this->buildApplication()->getServiceManager();
 
         $this->assertService($manager, HydratorStrategy\Roman::class);
+    }
+
+    /**
+     * Test Default Romans Services
+     */
+    public function testDefaultRomansServices()
+    {
+        $manager = $this->buildApplication()->getServiceManager();
+
+        $this->assertService($manager, RomansFilter\IntToRoman::class);
+        $this->assertService($manager, RomansFilter\RomanToInt::class);
+        $this->assertService($manager, RomansGrammar\Grammar::class);
+        $this->assertService($manager, RomansLexer\Lexer::class);
+        $this->assertService($manager, RomansParser\Parser::class);
     }
 }
