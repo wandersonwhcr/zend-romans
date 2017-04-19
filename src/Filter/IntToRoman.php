@@ -58,12 +58,11 @@ class IntToRoman implements FilterInterface
      */
     public function filter($value)
     {
-        $result = null;
-
         try {
             $result = $this->getIntToRomanFilter()->filter($value);
         } catch (FilterException $e) {
             // default value: null
+            $result = null;
         }
 
         return $result;

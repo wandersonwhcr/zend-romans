@@ -15,8 +15,10 @@ class Roman implements FactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $config = null)
     {
+        unset($requestedName, $config); // PHPCS
+
         return new RomanViewHelper(
             $container->get('FilterManager')->get(IntToRomanFilter::class)
         );

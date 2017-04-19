@@ -17,6 +17,8 @@ class RomanToInt implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $config = null)
     {
+        unset($requestedName, $config); // PHPCS
+
         return new RomanToIntFilter(
             $container->get(RomansFilter\RomanToInt::class)
         );
