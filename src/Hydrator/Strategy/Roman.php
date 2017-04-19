@@ -26,12 +26,23 @@ class Roman implements StrategyInterface
 
     /**
      * Default Constructor
+     *
+     * @param IntToRomanFilter $intToRomanFilter Integer to Roman Number Filter
+     * @param RomanToIntFilter $romanToIntFilter Roman Number to Integer Filter
      */
-    public function __construct()
+    public function __construct(IntToRomanFilter $intToRomanFilter = null, RomanToIntFilter $romanToIntFilter = null)
     {
+        if (! isset($intToRomanFilter)) {
+            $intToRomanFilter = new IntToRomanFilter();
+        }
+
+        if (! isset($romanToIntFilter)) {
+            $romanToIntFilter = new RomanToIntFilter();
+        }
+
         $this
-            ->setIntToRomanFilter(new IntToRomanFilter())
-            ->setRomanToIntFilter(new RomanToIntFilter());
+            ->setIntToRomanFilter($intToRomanFilter)
+            ->setRomanToIntFilter($romanToIntFilter);
     }
 
     /**

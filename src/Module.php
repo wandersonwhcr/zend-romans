@@ -41,8 +41,8 @@ class Module implements FilterProviderInterface, ServiceProviderInterface, Valid
     public function getServiceConfig()
     {
         return [
-            'invokables' => [
-                HydratorStrategy\Roman::class => HydratorStrategy\Roman::class,
+            'factories' => [
+                HydratorStrategy\Roman::class => HydratorStrategy\Factory\Roman::class,
             ],
         ];
     }
