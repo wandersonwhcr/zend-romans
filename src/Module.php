@@ -32,7 +32,9 @@ class Module implements
         return [
             'invokables' => [
                 Filter\RomanToInt::class => Filter\RomanToInt::class,
-                Filter\IntToRoman::class => Filter\IntToRoman::class,
+            ],
+            'factories' => [
+                Filter\IntToRoman::class => Filter\Factory\IntToRoman::class,
             ],
             'aliases' => [
                 'RomanToInt' => Filter\RomanToInt::class,
