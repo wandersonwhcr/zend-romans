@@ -165,7 +165,7 @@ class Roman extends AbstractValidator
         $this->setValue($value);
 
         if (! is_string($value)) {
-            $this->error(self::INVALID_TYPE, 'Blabla');
+            $this->error(self::INVALID_TYPE);
             return false;
         }
 
