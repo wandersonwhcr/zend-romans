@@ -15,6 +15,7 @@
         }
     },
     "require": {
+        "php": "^7.0",
         "wandersonwhcr/romans": "^1.0",
         "zendframework/zend-filter": "2.7.*",
         "zendframework/zend-hydrator": "2.2.*",
