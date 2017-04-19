@@ -99,3 +99,19 @@ try {
     // unable to convert
 }
 ```
+
+### Module
+
+This package is provided as a Zend Framework module. To initialize this module,
+add the package namespace into application loaded modules configuration.
+
+```php
+<?php
+return [
+    'modules' => [
+        // ...
+        'Zend\Romans',
+        // ...
+    ],
+];
+```
