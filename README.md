@@ -115,3 +115,8 @@ return [
     ],
 ];
 ```
+
+## License
+
+This package is opensource and available under license MIT described in
+[LICENSE](https://github.com/wandersonwhcr/zend-romans/blob/master/LICENSE).
