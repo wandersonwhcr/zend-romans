@@ -2,6 +2,7 @@
 
 namespace ZendTest\Romans;
 
+use Interop\Container\ContainerInterface;
 use PHPUnit\Framework\TestCase;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
@@ -49,6 +50,26 @@ class ModuleTest extends TestCase
     }
 
     /**
+     * Assert Service
+     *
+     * @param  ContainerInterface $manager Service Container
+     * @param  string             $className Name of the Class
+     * @param  array              $identifiers Identifiers
+     * @return self               Fluent Interface
+     */
+    protected function assertService(ContainerInterface $manager, string $className, array $identifiers = []) : self
+    {
+        array_unshift($identifiers, $className);
+
+        foreach ($identifiers as $identifier) {
+            $this->assertTrue($manager->has($identifier));
+            $this->assertInstanceOf($className, $manager->get($identifier));
+        }
+
+        return $this;
+    }
+
+    /**
      * Test Instance Of
      */
     public function testInstanceOf()
@@ -66,17 +87,7 @@ class ModuleTest extends TestCase
     {
         $manager = $this->buildApplication()->getServiceManager()->get('FilterManager');
 
-        $identifiers = [
-            Filter\RomanToInt::class,
-            'RomanToInt',
-            'romanToInt',
-            'romantoint',
-        ];
-
-        foreach ($identifiers as $identifier) {
-            $this->assertTrue($manager->has($identifier));
-            $this->assertInstanceOf(Filter\RomanToInt::class, $manager->get($identifier));
-        }
+        $this->assertService($manager, Filter\RomanToInt::class, ['RomanToInt', 'romanToInt', 'romantoint']);
     }
 
     /**
@@ -86,17 +97,7 @@ class ModuleTest extends TestCase
     {
         $manager = $this->buildApplication()->getServiceManager()->get('FilterManager');
 
-        $identifiers = [
-            Filter\IntToRoman::class,
-            'IntToRoman',
-            'intToRoman',
-            'inttoroman',
-        ];
-
-        foreach ($identifiers as $identifier) {
-            $this->assertTrue($manager->has($identifier));
-            $this->assertInstanceOf(Filter\IntToRoman::class, $manager->get($identifier));
-        }
+        $this->assertService($manager, Filter\IntToRoman::class, ['IntToRoman', 'intToRoman', 'inttoroman']);
     }
 
     /**
@@ -106,16 +107,7 @@ class ModuleTest extends TestCase
     {
         $manager = $this->buildApplication()->getServiceManager()->get('ValidatorManager');
 
-        $identifiers = [
-            Validator\Roman::class,
-            'Roman',
-            'roman',
-        ];
-
-        foreach ($identifiers as $identifier) {
-            $this->assertTrue($manager->has($identifier));
-            $this->assertInstanceOf(Validator\Roman::class, $manager->get($identifier));
-        }
+        $this->assertService($manager, Validator\Roman::class, ['Roman', 'roman']);
     }
 
     /**
@@ -125,16 +117,7 @@ class ModuleTest extends TestCase
     {
         $manager = $this->buildApplication()->getServiceManager()->get('ViewHelperManager');
 
-        $identifiers = [
-            ViewHelper\Roman::class,
-            'Roman',
-            'roman',
-        ];
-
-        foreach ($identifiers as $identifier) {
-            $this->assertTrue($manager->has($identifier));
-            $this->assertInstanceOf(ViewHelper\Roman::class, $manager->get($identifier));
-        }
+        $this->assertService($manager, ViewHelper\Roman::class, ['Roman', 'roman']);
     }
 
     /*
@@ -144,13 +127,6 @@ class ModuleTest extends TestCase
     {
         $manager = $this->buildApplication()->getServiceManager();
 
-        $identifiers = [
-            HydratorStrategy\Roman::class,
-        ];
-
-        foreach ($identifiers as $identifier) {
-            $this->assertTrue($manager->has($identifier));
-            $this->assertInstanceOf(HydratorStrategy\Roman::class, $manager->get($identifier));
-        }
+        $this->assertService($manager, HydratorStrategy\Roman::class);
     }
 }
