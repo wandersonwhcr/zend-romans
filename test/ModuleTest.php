@@ -5,10 +5,12 @@ namespace ZendTest\Romans;
 use PHPUnit\Framework\TestCase;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\ValidatorProviderInterface;
+use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 use Zend\Mvc\Application;
 use Zend\Romans\Filter;
 use Zend\Romans\Module;
 use Zend\Romans\Validator;
+use Zend\Romans\View\Helper as ViewHelper;
 
 /**
  * Module Test
@@ -50,6 +52,7 @@ class ModuleTest extends TestCase
     {
         $this->assertInstanceOf(FilterProviderInterface::class, $this->module);
         $this->assertInstanceOf(ValidatorProviderInterface::class, $this->module);
+        $this->assertInstanceOf(ViewHelperProviderInterface::class, $this->module);
     }
 
     /**
@@ -108,6 +111,25 @@ class ModuleTest extends TestCase
         foreach ($identifiers as $identifier) {
             $this->assertTrue($manager->has($identifier));
             $this->assertInstanceOf(Validator\Roman::class, $manager->get($identifier));
+        }
+    }
+
+    /**
+     * Test Roman ViewHelper
+     */
+    public function testRomanViewHelper()
+    {
+        $manager = $this->buildApplication()->getServiceManager()->get('ViewHelperManager');
+
+        $identifiers = [
+            ViewHelper\Roman::class,
+            'Roman',
+            'roman',
+        ];
+
+        foreach ($identifiers as $identifier) {
+            $this->assertTrue($manager->has($identifier));
+            $this->assertInstanceOf(ViewHelper\Roman::class, $manager->get($identifier));
         }
     }
 }
