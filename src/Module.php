@@ -10,10 +10,8 @@ use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\ModuleManager\Feature\ValidatorProviderInterface;
 use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
-use Zend\Romans\Filter;
 use Zend\Romans\Hydrator\Strategy as HydratorStrategy;
-use Zend\Romans\Lexer;
-use Zend\Romans\Parser;
+use Zend\Romans\Romans\Factory as RomansFactory;
 use Zend\Romans\Validator;
 use Zend\Romans\View\Helper as ViewHelper;
 
@@ -60,8 +58,8 @@ class Module implements
             ],
             'factories' => [
                 HydratorStrategy\Roman::class => HydratorStrategy\Factory\Roman::class,
-                RomansLexer\Lexer::class      => Lexer\Factory\Lexer::class,
-                RomansParser\Parser::class    => Parser\Factory\Parser::class,
+                RomansLexer\Lexer::class      => RomansFactory\Lexer::class,
+                RomansParser\Parser::class    => RomansFactory\Parser::class,
             ],
         ];
     }
