@@ -4,6 +4,7 @@ namespace ZendTest\Romans;
 
 use Interop\Container\ContainerInterface;
 use PHPUnit\Framework\TestCase;
+use Romans\Filter as RomansFilter;
 use Romans\Grammar as RomansGrammar;
 use Romans\Lexer as RomansLexer;
 use Romans\Parser as RomansParser;
@@ -140,6 +141,8 @@ class ModuleTest extends TestCase
     {
         $manager = $this->buildApplication()->getServiceManager();
 
+        $this->assertService($manager, RomansFilter\IntToRoman::class);
+        $this->assertService($manager, RomansFilter\RomanToInt::class);
         $this->assertService($manager, RomansGrammar\Grammar::class);
         $this->assertService($manager, RomansLexer\Lexer::class);
         $this->assertService($manager, RomansParser\Parser::class);

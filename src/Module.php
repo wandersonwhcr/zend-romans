@@ -2,6 +2,7 @@
 
 namespace Zend\Romans;
 
+use Romans\Filter as RomansFilter;
 use Romans\Grammar as RomansGrammar;
 use Romans\Lexer as RomansLexer;
 use Romans\Parser as RomansParser;
@@ -53,7 +54,9 @@ class Module implements
     {
         return [
             'invokables' => [
-                RomansGrammar\Grammar::class => RomansGrammar\Grammar::class,
+                RomansFilter\IntToRoman::class => RomansFilter\IntToRoman::class,
+                RomansFilter\RomanToInt::class => RomansFilter\RomanToInt::class,
+                RomansGrammar\Grammar::class   => RomansGrammar\Grammar::class,
             ],
             'factories' => [
                 HydratorStrategy\Roman::class => HydratorStrategy\Factory\Roman::class,
