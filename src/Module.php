@@ -30,11 +30,9 @@ class Module implements
     public function getFilterConfig()
     {
         return [
-            'invokables' => [
-                Filter\RomanToInt::class => Filter\RomanToInt::class,
-            ],
             'factories' => [
                 Filter\IntToRoman::class => Filter\Factory\IntToRoman::class,
+                Filter\RomanToInt::class => Filter\Factory\RomanToInt::class,
             ],
             'aliases' => [
                 'RomanToInt' => Filter\RomanToInt::class,
