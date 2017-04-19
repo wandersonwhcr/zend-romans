@@ -2,6 +2,8 @@
 
 Zend Framework Romans Integration
 
+[![Latest Stable Version](https://poser.pugx.org/wandersonwhcr/zend-romans/v/stable?format=flat)](https://packagist.org/packages/wandersonwhcr/zend-romans)
+
 ## Description
 
 This package provides a Zend Framework integration for
