@@ -23,3 +23,28 @@ stable version.
     }
 }
 ```
+
+## Usage
+
+This package provide filters, validators and hydrators to use with Zend
+Framework projects. Also, this package is provided as a Zend Framework module,
+automatically configuring services inside application, but this action is not
+required.
+
+### Filters
+
+Zend Romans provides a couple of filters to convert a `string` with Roman number
+to `int` and a Integer to a `string` that represents the input as Roman number.
+
+```php
+use Zend\Romans\Filter\RomanToInt;
+use Zend\Romans\Filter\IntToRoman;
+
+$value = 'MCMXCIX';
+
+$filter = new RomanToInt();
+$value  = $filter->filter($value); // 1999
+
+$filter = new IntToRoman();
+$value  = $filter->filter($value); // MCMXCIX
+```
