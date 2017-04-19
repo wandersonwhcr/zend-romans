@@ -2,6 +2,9 @@
 
 namespace Zend\Romans;
 
+use Romans\Grammar as RomansGrammar;
+use Romans\Lexer as RomansLexer;
+use Romans\Parser as RomansParser;
 use Zend\ModuleManager\Feature\FilterProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\ModuleManager\Feature\ValidatorProviderInterface;
@@ -47,6 +50,11 @@ class Module implements
     public function getServiceConfig()
     {
         return [
+            'invokables' => [
+                RomansGrammar\Grammar::class => RomansGrammar\Grammar::class,
+                RomansLexer\Lexer::class     => RomansLexer\Lexer::class,
+                RomansParser\Parser::class   => RomansParser\Parser::class,
+            ],
             'factories' => [
                 HydratorStrategy\Roman::class => HydratorStrategy\Factory\Roman::class,
             ],
