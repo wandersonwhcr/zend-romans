@@ -48,3 +48,34 @@ $value  = $filter->filter($value); // 1999
 $filter = new IntToRoman();
 $value  = $filter->filter($value); // MCMXCIX
 ```
+
+### Validator
+
+Also, this package include a validator to verify if a `string` contains a valid
+Roman number.
+
+```php
+use Zend\Romans\Validator\Roman;
+
+$validator = new Roman();
+
+$result = $validator->isValid('MCMXCIX'); // true
+
+$result   = $validator->isValid('IAI'); // false
+$messages = $validator->getMessages();
+
+/*
+$messages = [
+    'unknownToken' => 'Unknown token "A" at position 1',
+];
+*/
+
+$result   = $validator->isValid('XIIIX'); // false
+$messages = $validator->getMessages();
+
+/*
+$messages = [
+    'invalidRoman' => 'Invalid Roman number "XIIX"',
+];
+ */
+```
