@@ -17,14 +17,14 @@ class RomanToInt implements FilterInterface
      */
     public function filter($value)
     {
-        $result = null;
-
         try {
             $result = (new BaseRomanToInt())->filter($value);
         } catch (LexerException $e) {
             // default value: null
+            $result = null;
         } catch (ParserException $e) {
             // default value: null
+            $result = null;
         }
 
         return $result;
