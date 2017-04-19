@@ -3,7 +3,7 @@
     "description": "Zend Framework Romans Integration",
     "type": "library",
     "license": "MIT",
-    "keywords": ["zend-framework", "zf", "roman-numerals"],
+    "keywords": ["zend-framework", "zend-filter", "zend-validator", "zend-hydrator", "roman", "roman-number", "roman-numeral", "converter", "format"],
     "autoload": {
         "psr-4": {
             "Zend\\Romans\\": "src"
