@@ -87,7 +87,13 @@ class Roman implements StrategyInterface
             throw new InvalidArgumentException('Invalid value type; must be "int"');
         }
 
-        return $this->getIntToRomanFilter()->filter($value);
+        $result = $this->getIntToRomanFilter()->filter($value);
+
+        if (! is_string($result)) {
+            throw new InvalidArgumentException('Invalid result; cannot convert value');
+        }
+
+        return $result;
     }
 
     /**
@@ -99,6 +105,12 @@ class Roman implements StrategyInterface
             throw new InvalidArgumentException('Invalid value type; must be "string"');
         }
 
-        return $this->getRomanToIntFilter()->filter($value);
+        $result = $this->getRomanToIntFilter()->filter($value);
+
+        if (! is_int($result)) {
+            throw new InvalidArgumentException('Invalid result; cannot convert value');
+        }
+
+        return $result;
     }
 }
