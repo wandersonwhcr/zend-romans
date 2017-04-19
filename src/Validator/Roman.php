@@ -2,7 +2,7 @@
 
 namespace Zend\Romans\Validator;
 
-use Romans\Filter\RomanToInt;
+use Romans\Filter\RomanToInt as RomanToIntFilter;
 use Romans\Lexer\Exception as LexerException;
 use Romans\Parser\Exception as ParserException;
 use Zend\Validator\AbstractValidator;
@@ -34,6 +34,12 @@ class Roman extends AbstractValidator
     ];
 
     /**
+     * Roman Number to Integer Filter
+     * @type RomanToIntFilter
+     */
+    private $romanToIntFilter;
+
+    /**
      * Token for Message Variables
      * @type string
      */
@@ -44,6 +50,45 @@ class Roman extends AbstractValidator
      * @type int
      */
     protected $position = 0;
+
+    /**
+     * Default Constructor
+     *
+     * @param array|Traversable $options
+     * @param RomanToIntFilter  $romanToIntFilter RomanToInt Object
+     */
+    public function __construct($options = null, RomanToIntFilter $romanToIntFilter = null)
+    {
+        parent::__construct($options);
+
+        if (! isset($romanToIntFilter)) {
+            $romanToIntFilter = new RomanToIntFilter();
+        }
+
+        $this->setRomanToIntFilter($romanToIntFilter);
+    }
+
+    /**
+     * Set Roman Number to Integer Filter
+     *
+     * @param  RomanToIntFilter $romanToIntFilter RomanToInt Object
+     * @return self             Fluent Interface
+     */
+    public function setRomanToIntFilter(RomanToIntFilter $romanToIntFilter) : self
+    {
+        $this->romanToIntFilter = $romanToIntFilter;
+        return $this;
+    }
+
+    /**
+     * Get Roman Number to Integer Filter
+     *
+     * @return RomanToIntFilter RomanToInt Object
+     */
+    public function getRomanToIntFilter() : RomanToIntFilter
+    {
+        return $this->romanToIntFilter;
+    }
 
     /**
      * Set Token for Message Variables
@@ -127,7 +172,7 @@ class Roman extends AbstractValidator
         $result = false;
 
         try {
-            $result = ((new RomanToInt())->filter($value) >= 0);
+            $result = ($this->getRomanToIntFilter()->filter($value) >= 0);
         } catch (LexerException $e) {
             $this->markWithError(self::UNKNOWN_TOKEN, $e->getToken(), $e->getPosition());
         } catch (ParserException $e) {
