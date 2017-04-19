@@ -88,16 +88,16 @@
         },
         {
             "name": "wandersonwhcr/romans",
-            "version": "v1.0.3",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wandersonwhcr/romans.git",
-                "reference": "f94e4758988cc5441782e612c0cea8bbd019d687"
+                "reference": "aa1792bb30d338988dcde8dc6a37b51ec76aaf0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wandersonwhcr/romans/zipball/f94e4758988cc5441782e612c0cea8bbd019d687",
-                "reference": "f94e4758988cc5441782e612c0cea8bbd019d687",
+                "url": "https://api.github.com/repos/wandersonwhcr/romans/zipball/aa1792bb30d338988dcde8dc6a37b51ec76aaf0e",
+                "reference": "aa1792bb30d338988dcde8dc6a37b51ec76aaf0e",
                 "shasum": ""
             },
             "require": {
@@ -135,7 +135,7 @@
                 "roman-numeral",
                 "validator"
             ],
-            "time": "2017-04-12T18:47:45+00:00"
+            "time": "2017-04-18T20:33:52+00:00"
         },
         {
             "name": "zendframework/zend-config",
