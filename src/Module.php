@@ -11,6 +11,7 @@ use Zend\ModuleManager\Feature\ValidatorProviderInterface;
 use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 use Zend\Romans\Filter;
 use Zend\Romans\Hydrator\Strategy as HydratorStrategy;
+use Zend\Romans\Parser;
 use Zend\Romans\Validator;
 use Zend\Romans\View\Helper as ViewHelper;
 
@@ -53,10 +54,10 @@ class Module implements
             'invokables' => [
                 RomansGrammar\Grammar::class => RomansGrammar\Grammar::class,
                 RomansLexer\Lexer::class     => RomansLexer\Lexer::class,
-                RomansParser\Parser::class   => RomansParser\Parser::class,
             ],
             'factories' => [
                 HydratorStrategy\Roman::class => HydratorStrategy\Factory\Roman::class,
+                RomansParser\Parser::class    => Parser\Factory\Parser::class,
             ],
         ];
     }
