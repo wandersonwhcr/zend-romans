@@ -15,5 +15,5 @@ test:
 	php vendor/bin/parallel-lint src
 	php vendor/bin/phpunit
 	php vendor/bin/phpcpd src
-	php vendor/bin/phpmd src text phpmd.xml || true
+	php vendor/bin/phpmd src text phpmd.xml
 	php vendor/bin/phpcs || true

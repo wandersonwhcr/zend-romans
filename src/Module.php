@@ -17,6 +17,8 @@ use Zend\Romans\View\Helper as ViewHelper;
 
 /**
  * Romans Module
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Module implements
     FilterProviderInterface,
