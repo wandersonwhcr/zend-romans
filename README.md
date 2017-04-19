@@ -37,15 +37,15 @@ Zend Romans provides a couple of filters to convert a `string` with Roman number
 to `int` and a Integer to a `string` that represents the input as Roman number.
 
 ```php
-use Zend\Romans\Filter\RomanToInt;
-use Zend\Romans\Filter\IntToRoman;
+use Zend\Romans\Filter\RomanToInt as RomanToIntFilter;
+use Zend\Romans\Filter\IntToRoman as IntToRomanFilter;
 
 $value = 'MCMXCIX';
 
-$filter = new RomanToInt();
+$filter = new RomanToIntFilter();
 $value  = $filter->filter($value); // 1999
 
-$filter = new IntToRoman();
+$filter = new IntToRomanFilter();
 $value  = $filter->filter($value); // MCMXCIX
 ```
 
@@ -55,9 +55,9 @@ Also, this package include a validator to verify if a `string` contains a valid
 Roman number.
 
 ```php
-use Zend\Romans\Validator\Roman;
+use Zend\Romans\Validator\Roman as RomanValidator;
 
-$validator = new Roman();
+$validator = new RomanValidator();
 
 $result = $validator->isValid('MCMXCIX'); // true
 
@@ -78,4 +78,24 @@ $messages = [
     'invalidRoman' => 'Invalid Roman number "XIIX"',
 ];
  */
+```
+
+### Hydrator
+
+Finally, there is a hydrator strategy, responsible to handle Roman numbers. Like
+any other Zend Framework strategy, exceptions will be throw for errors.
+
+```php
+use InvalidArgumentException;
+use Zend\Romans\Hydrator\Strategy\Roman as RomanHydratorStrategy;
+
+$value    = 'MCMXCIX';
+$strategy = new RomanHydratorStrategy();
+
+try {
+    $value = $strategy->hydrate($value); // 1999
+    $value = $strategy->extract($value); // MCMXCIX
+} catch (InvalidArgumentException $e) {
+    // unable to convert
+}
 ```
