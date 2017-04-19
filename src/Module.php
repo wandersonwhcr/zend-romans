@@ -70,8 +70,8 @@ class Module implements
     public function getValidatorConfig()
     {
         return [
-            'invokables' => [
-                Validator\Roman::class => Validator\Roman::class,
+            'factories' => [
+                Validator\Roman::class => Validator\Factory\Roman::class,
             ],
             'aliases' => [
                 'Roman' => Validator\Roman::class,
