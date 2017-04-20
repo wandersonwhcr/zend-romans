@@ -120,6 +120,36 @@ return [
 ];
 ```
 
+## Services Available
+
+If you configure this package as a Zend Framework module, there is a lot of
+services configured. The list below shows all services available with
+`Zend\Romans` module. Items with double-arrow represents services aliases.
+
+* `Romans\Grammar\Grammar`
+* `Romans\Lexer\Lexer`
+* `Romans\Parser\Parser`
+* `Romans\Filter\IntToRoman`
+* `Romans\Filter\RomanToInt`
+* `Zend\Romans\Hydrator\Strategy\Roman`
+* `FilterManager`
+  * `Zend\Romans\Filter\IntToRoman`
+  * `Zend\Romans\Filter\RomanToInt`
+  * `IntToRoman` => `Zend\Romans\Filter\IntToRoman`
+  * `intToRoman` => `Zend\Romans\Filter\IntToRoman`
+  * `inttoroman` => `Zend\Romans\Filter\IntToRoman`
+  * `RomanToInt` => `Zend\Romans\Filter\RomanToInt`
+  * `romanToInt` => `Zend\Romans\Filter\RomanToInt`
+  * `romantoint` => `Zend\Romans\Filter\RomanToInt`
+* `ValidatorManager`
+  * `Zend\Romans\Validator\Roman`
+  * `Roman` => `Zend\Romans\Validator\Roman`
+  * `roman` => `Zend\Romans\Validator\Roman`
+* `ViewHelperManager`
+  * `Zend\Romans\View\Helper\Roman`
+  * `Roman` => `Zend\Romans\View\Helper\Roman`
+  * `roman` => `Zend\Romans\View\Helper\Roman`
+
 ## License
 
 This package is opensource and available under license MIT described in
