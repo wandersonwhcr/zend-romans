@@ -36,5 +36,10 @@
     "suggest": {
         "zendframework/zend-modulemanager": "Needed to load this package as Zend Framework module",
         "zendframework/zend-servicemanager": "Allows the use of service factories into Zend Framework"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "1.0.x-dev"
+        }
     }
 }
