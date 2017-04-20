@@ -42,6 +42,18 @@
             "*": "dist"
         }
     },
+    "scripts": {
+        "optimize": [
+            "composer install --no-dev --optimize-autoloader --classmap-authoritative"
+        ],
+        "test": [
+            "parallel-lint src",
+            "phpunit",
+            "phpcpd src",
+            "phpmd src text phpmd.xml",
+            "phpcs"
+        ]
+    },
     "extra": {
         "branch-alias": {
             "dev-develop": "1.0.x-dev"
