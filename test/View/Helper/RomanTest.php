@@ -16,7 +16,7 @@ class RomanTest extends TestCase
      */
     protected function setUp()
     {
-        $this->helper = new Roman(new IntToRomanFilter());
+        $this->helper = new Roman();
     }
 
     /**

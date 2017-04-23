@@ -86,8 +86,8 @@ $messages = [
 
 ### Hydrator
 
-Finally, there is a hydrator strategy, responsible to handle Roman numbers. Like
-any other Zend Framework strategy, exceptions will be throw for errors.
+There is a hydrator strategy, responsible to handle Roman numbers. Like any
+other Zend Framework strategy, exceptions will be throw for errors.
 
 ```php
 use InvalidArgumentException;
@@ -102,6 +102,23 @@ try {
 } catch (InvalidArgumentException $e) {
     // unable to convert
 }
+```
+
+### ViewHelper
+
+Finally, there is a view helper to convert `int` to Roman numbers directly,
+using an internal filter for this job.
+
+```php
+use Zend\Romans\View\Helper\Roman as RomanViewHelper;
+
+$helper = new RomanViewHelper();
+
+// Simple Access
+echo $helper(1999); // MCMXCIX
+
+// ... or Inside ViewRenderer
+echo $this->roman(1999); // MCMXCIX
 ```
 
 ### Module
