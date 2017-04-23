@@ -120,6 +120,18 @@ return [
 ];
 ```
 
+Using this feature you must require Zend Framework ModuleManager and
+ServiceManager in your `composer.json` file.
+
+```json
+{
+    "require": {
+        "zendframework/zend-modulemanager": "2.7.*",
+        "zendframework/zend-servicemanager": "3.3.*"
+    }
+}
+```
+
 ## Services Available
 
 If you configure this package as a Zend Framework module, there is a lot of
