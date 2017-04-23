@@ -37,6 +37,23 @@
         "zendframework/zend-modulemanager": "Needed to load this package as Zend Framework module",
         "zendframework/zend-servicemanager": "Allows the use of service factories into Zend Framework"
     },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        }
+    },
+    "scripts": {
+        "optimize": [
+            "composer install --no-dev --optimize-autoloader --classmap-authoritative"
+        ],
+        "test": [
+            "parallel-lint src",
+            "phpunit",
+            "phpcpd src",
+            "phpmd src text phpmd.xml",
+            "phpcs"
+        ]
+    },
     "extra": {
         "branch-alias": {
             "dev-develop": "1.0.x-dev"
