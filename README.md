@@ -1,8 +1,7 @@
 # zend-romans
 
-Zend Framework Romans Integration
+**DEPRECATED** use [Laminas Project Romans Integration](https://github.com/wandersonwhcr/laminas-romans)
 
-[![Build Status](https://travis-ci.org/wandersonwhcr/zend-romans.svg?branch=master)](https://travis-ci.org/wandersonwhcr/zend-romans)
 [![Latest Stable Version](https://poser.pugx.org/wandersonwhcr/zend-romans/v/stable?format=flat)](https://packagist.org/packages/wandersonwhcr/zend-romans)
 [![License](https://poser.pugx.org/wandersonwhcr/zend-romans/license?format=flat)](https://packagist.org/packages/wandersonwhcr/zend-romans)
 
